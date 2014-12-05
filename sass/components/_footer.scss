@@ -1,0 +1,308 @@
+/* ==========================================================================
+   MAPS
+   ========================================================================== */
+
+.maps{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    
+    .info {
+        .aksvb-logo-min-r{
+            float:left;
+            margin:0 10px 20px 0;
+        }
+        p{ margin:0; }
+    }
+
+    .no-js &{ display: none; }
+}
+
+
+/* ==========================================================================
+   FOOTER CONTAINER
+   ========================================================================== */
+
+.footer{
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 50;
+    @include image('background-contact.jpg');
+    @include background-size(cover);
+    width: auto;
+    height: auto;
+}
+
+
+/* ==========================================================================
+   HEADLINE
+   ========================================================================== */
+
+.headline-container{
+    position: relative;
+    width: 100%;
+    
+    text-align: center;
+    background-color: transparent; // Old browsers
+    @include background-image(linear-gradient(top,  rgba(255,255,255,0.15) 0%,rgba(252,252,252,0.15) 1%,rgba(0,0,0,0.15) 100%));
+    @include box-shadow(rgba(0,0,0,0.8) 0px 2px 5px, rgba(0,0,0,0.8) 0 -4px 5px -3px);
+    z-index: 70;
+    @include respond-to(desktop) { margin-bottom: 70px; }
+    @include respond-to(tablet) { margin-bottom: 50px; }
+    @include respond-to(mobile) { margin-bottom: 30px; }
+}
+
+a.headline, .headline{
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    margin: 20px 0;
+    
+
+    .title{
+        @extend .font-bold;
+        
+        @include respond-to(mobile) {
+            margin: 18px 0 0 54px;
+            font-size: 13.51px;
+        }
+        @include respond-to(tablet-desktop) {
+            margin: 9px 0 0 90px;
+            font-size: 27.02px;
+        }
+    }
+
+    .subtitle{
+        @extend .font-regular;
+        text-align: left;
+
+        @include respond-to(mobile) {
+            margin: -3px 0 0 54px;
+            font-size: 9.5px;
+        }
+        @include respond-to(tablet-desktop) {
+            margin: -13px 0 0 90px;
+            font-size: 18.87px;
+        }
+    }
+
+    .logo-aksvb-w{
+        position: relative;
+        @include use-sprite(aksvb-logo-w);
+        float: left;
+        display: inline-block;
+
+        @include respond-to(mobile) { margin: 0 -54px 0 0; }
+        @include respond-to(tablet-desktop) { margin: 0 -90px 0 0; }
+    }
+
+    @include respond-to(mobile) {
+        .logo-aksvb-w{ @include use-sprite(aksvb-logo-min-w); }
+    }
+}
+
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+
+.contact{
+    position: relative;
+    width: 100%;
+    z-index: 80;
+    color: white;
+
+    @include respond-to(mobile-tablet) { text-align: center; }
+    @include respond-to(desktop) { text-align: left; }
+    
+    h1{ 
+        color: white;
+        border-bottom: 1px solid white;
+        margin-top: 0;
+        padding-bottom: 14px;
+    }
+
+    p{ margin: 0; }
+
+    form{
+        text-align: center;
+        font-size: 16px;
+        margin-top: 44px;
+
+        @include respond-to(tablet-desktop) { 
+            .c-input-name{ padding-right: 10px; }
+            .c-input-email{ padding-left: 10px; }
+        }
+    }
+}
+
+
+/* ==========================================================================
+   INFORMATIONS
+   ========================================================================== */
+
+.informations{
+    position: relative;
+    width: 100%;
+    padding-top: 65px;
+    z-index: 70;
+    color: white;
+    font-size: 16px;
+    @extend .clearfix;
+    @include box-shadow(rgba(0,0,0,0.8) 0 6px 5px -3px);
+
+    @include respond-to(mobile) {
+        padding-top: 30px;
+
+        p{ 
+            text-align: center;
+            margin: 0;
+
+            &:last-child{ margin: 3px 0 20px 0; }
+        }
+    }
+
+    p{ 
+        margin: 0;
+        line-height: 1.1em;
+
+        @include respond-to(mobile) {
+            &:last-child{ margin: 3px 0 20px 0; }
+        }
+    } 
+
+    img{
+        position: relative;
+
+        @include respond-to(mobile) {
+            display: block;
+            margin: 20px auto 8px;
+        }
+        
+        @include respond-to(tablet-desktop) {
+            float: left;
+            margin: -10px 10px 8px 0;
+        }
+    }
+
+    @include respond-to(tablet-desktop) { 
+        .line{ 
+            margin-bottom: 40px; 
+            &:last-child{ margin-bottom: 70px;  }
+        }
+    }
+
+    p.federation-line{
+        text-transform: uppercase;
+        font-size: 12.09px;
+        margin-bottom: 30px;
+
+        @include respond-to(mobile) {
+            //display: inline-block;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+
+/* ==========================================================================
+   CREDITS
+   ========================================================================== */
+
+.credits{
+    position: relative;
+    height: 112px;
+    width: 100%;
+    color: #fff;
+    font-size: 12px;
+    overflow: hidden;
+    z-index: 100;
+    @extend .clearfix;
+    @extend %bg-white-a;
+
+    p{ text-align: center;margin: 35px 0 0 0; }
+
+    a{ color: white; }
+
+    .opla-logo{
+        @include use-sprite('opla-logo');
+        position: relative;
+        display: inline-block;
+        top: 4px;
+    }
+
+    a.top{
+        @include triangle(top, darken($colorw, 10), 43px);
+        @include transition(all 0.5s ceaser($easeInOutBack));
+        position: fixed;
+        display: inline-block;
+        bottom: 0;
+        text-align: center;
+        text-decoration: none;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        
+        @include respond-to(desktop) { 
+            &:hover{
+                border-width: 0 86px 86px 86px;
+
+                p{ @include opacity(1); }
+            }
+        }
+        
+
+        span{
+            display: block;
+
+            .no-js &, .no-csstransforms &{
+                left: 50%;
+                margin: 0 0 0 -12px;
+                position: relative;
+                top: 15px;
+                @include triangle(top, #000, 12px);
+            }            
+
+            .csstransforms &{
+                position: relative;
+
+                &:before, &:after{
+                    position: absolute;
+                    content: " ";
+                    display: block;
+                    width: 12px;
+                    height: 5px;
+                    background-color: #000;
+                    top: 15px;
+                }
+
+                &:before{
+                    @include rotate(45deg);
+                    right: -9px;
+                }
+
+                &:after{
+                    @include rotate(-45deg);
+                    left: -9px;
+                }
+            }
+        }
+
+        p{
+            color: #000;
+            margin: 50px 0 0 -87.5px;
+            text-align: center;
+            width: 175px;
+            @include transition(opacity 0.5s linear);
+            @extend %opacity-hide;
+        }
+    }
+}

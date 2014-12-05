@@ -1,0 +1,403 @@
+.header{
+    position: absolute;
+    width: 100%;
+    height: $header-height;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    color: black;
+    @include box-shadow(rgba(0,0,0,0.8) 0px 2px 5px);
+    @extend %bg-white-a;
+
+    @include respond-to(mobile) { height: $header-height-min; }
+
+    ul{ 
+        margin: 0;
+        padding: 0;
+    }
+
+    a{ 
+        color: black;
+        text-decoration: none; 
+        &:hover{ color: white; }
+    }
+}
+
+.header-title-container{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+/* ==========================================================================
+   FACEBOOK
+   ========================================================================== */
+
+a.facebook-logo{
+    position: relative;
+    float: left;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    @extend %transition-bg;
+
+    &:hover, &:active{ @extend %bg-black-a; }
+
+    &:before{
+        @include init-content(absolute);
+        @include use-sprite(facebook-logo-b);
+        top: 40px;
+        left: 20px;
+    }
+    &:after{
+        @include init-content(absolute, 1px, 100%);
+        right: -1px;
+        top: 0;
+        @extend %bg-black-a;
+    }
+
+    @include respond-to(mobile) {
+        width: 30px;
+        &:before{
+            top: 20px;
+            left: 9px;
+        }
+    }
+}
+
+
+/* ==========================================================================
+   TITLE / LOGO
+   ========================================================================== */
+
+a.title-aksvb{
+    position: absolute;
+    left: 69px;
+    top: 0;
+    width: 375px;
+    height: 100%;
+    text-transform: uppercase;
+
+    @include respond-to(mobile) { left: 40px; }
+
+    &:hover{ color: black; }
+
+    .title{
+        @extend .font-bold;
+        font-size: 27px;
+        line-height: 0.9em;
+        margin: 10px 0 12px 0;
+
+        &:after{
+            @include init-content(absolute, 265px, 1px);
+            left: 0;
+            bottom: 35px;
+            @extend %bg-black-a;
+        }
+
+        @include respond-to(mobile) { 
+            font-size: 14px;
+            margin-bottom: 8px;
+            &:after{
+                bottom: 21px;
+                width: 137px;
+            }
+        }
+    }
+
+    .subtitle{
+        @extend .font-regular;
+        font-size: 17.6px;
+        line-height: 1em;
+        margin: 0;
+
+        @include respond-to(mobile) { font-size: 9px; }
+    }
+
+    .logo-aksvb-danse{
+        position: absolute;
+        top: 10px;
+        left: 276px;
+        @include use-sprite(aksvb-danse-licorne-dragon);
+
+        @include respond-to(mobile) { 
+            left: 141px;
+            @include use-sprite(aksvb-danse-licorne-dragon-min); 
+        }
+    }
+}
+
+
+/* ==========================================================================
+   MENU
+   ========================================================================== */
+
+ul.header-menu{
+    @extend .font-title;
+    @extend %bg-black-a;
+
+    li{
+        @extend %transition-bg;
+        &:hover{ @extend %bg-black-a; }
+        &:after{ @extend %bg-black-a; }
+    }
+
+    @include respond-to(desktop) {
+        position: absolute;
+        display: block !important;
+        height: 100% !important;
+        right: 58px;
+        top: 0;
+        font-size: 30.1px;
+        text-align: center;
+        line-height: $header-height;
+        background-color: transparent;
+
+        li{
+            position: relative;
+            float: left;
+            height: 100%;
+            min-width: 172px;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+            &:before{ display: none; }
+            &:after{
+                @include init-content(absolute, 1px, 100%);
+                left: -1px;
+                top: 0;
+            }
+        }
+
+        a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+            text-indent: -7px;
+        }
+    }
+
+    @include respond-to(tablet) {
+        top: $header-height;
+    }
+    @include respond-to(mobile) {
+        top: $header-height-min;
+    }
+
+    @include respond-to(mobile-tablet) {
+        position: relative;
+        width: 100%;
+        text-transform: uppercase;
+        font-size: 23px;
+        text-align: left;
+        z-index: 120;
+
+        .js &{ display: none; }
+
+        li{ 
+            position: relative;
+            width: 100%;
+            margin:0;
+
+            &:before{ display: none; }
+        }
+
+        a{
+            position: relative;
+            color: white;
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            text-indent: 18px;
+            padding: 10px 0px;
+            border-bottom: 1px solid white;
+            border-bottom: 1px solid rgba(white, 0.2);
+
+            /*&:hover, &.on{ color: $color2; }*/
+        }
+    }
+    
+}
+
+
+/* ==========================================================================
+   MENU LANG
+   ========================================================================== */
+
+.lang-menu{
+    position: absolute;
+    width: 57px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    
+    @extend %transition-bg;
+    @include transition(right 0.2s linear);
+    
+    @include respond-to(mobile-tablet) { 
+        right: 65px;
+        .no-js &{ display: none; }
+    }
+    @include respond-to(mobile) { right: 45px; width: 37px; }
+
+    &:hover, &.on{
+        @extend %bg-black-a;
+
+        ul{ 
+            width: 57px;
+            overflow: visible;
+            @extend %opacity-show;
+
+            @include respond-to(mobile) { width: 37px; }
+        }
+    }
+
+    &:after{
+        @include init-content(absolute, 1px, 100%);
+        left: -1px;
+        top: 0;
+        @extend %bg-black-a;
+    }
+
+    p{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        cursor: default;
+        line-height: $header-height;
+        text-align: center;
+
+        @include respond-to(mobile) {
+            color: #000;
+            line-height: $header-height-min;
+        }
+        @include respond-to(tablet-desktop) { line-height: $header-height; }
+    }
+
+    ul{
+        position: absolute;
+        overflow: hidden;
+        width: 0;
+        right: 0;
+        font-size: 14px;
+        z-index: 200;
+
+        @extend %transition-opacity;
+        @extend %opacity-hide;
+        @extend %bg-black-a;
+
+        @include respond-to(mobile) { top: $header-height-min; }
+        @include respond-to(tablet-desktop) { top: $header-height; }
+    }
+
+    li{
+        position: relative;
+        height: 30px;
+        width: 57px;
+        margin: 0;
+        line-height: 30px;
+
+        @include respond-to(mobile) { width: 37px; }
+
+        &:before{
+            @include init-content(relative, 17px, 1px);
+            display: block;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+        &:first-child:before{ display: none; }
+    }
+
+    a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: white;
+        &.on, &:hover{ color: black; }
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE CONTROL
+   ========================================================================== */
+
+.control-menu-mobile{
+    position: absolute;
+    width: 65px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    padding: 0;
+    cursor: pointer;
+    @extend %transition-bg;
+
+    @include respond-to(mobile) { width: 45px; }
+
+    .no-js &{ display: none; }
+
+    &:after{
+        @include init-content(absolute, 1px, 100%);
+        left: 0;
+        top: 0;
+        @extend %bg-black-a;
+    }
+
+    span{
+        position: absolute;
+        width: 24px;
+        height: 3px;
+        left: 19px;
+        top: 49px;
+        background-color: black;
+        @extend %transition-bg;
+
+        @include respond-to(mobile) { left: 10px; top: 29px; }
+
+        &:after, &:before{
+            position: absolute;
+            content:" ";
+            width: 100%;
+            height: 100%;
+            left: 0;
+            background-color: black;
+            
+            @include transition(transform 0.2s linear);
+        }
+        
+        &:before{ top: 6px; }
+        &:after{ top: -6px; }
+
+        &.active{
+            border-top: 5px solid white;
+            border-bottom: 5px solid white;
+            &:after{ background-color: white; }
+        }
+    }
+
+    &.on{
+        @extend %bg-black-a;
+
+        span{
+            background-color: transparent;
+
+            &:before{ 
+                top: 0px !important; // '!important' fix bug in android 4.1
+                @include rotate(45deg);
+            }
+            &:after{
+                top: 0px !important; // '!important' fix bug in android 4.1
+                @include rotate(-45deg);
+            }
+        }
+    }
+}
+

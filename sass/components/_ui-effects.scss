@@ -1,0 +1,27 @@
+/* ==========================================================================
+   EFFECTS
+   ========================================================================== */
+
+%transition-bg{ @include transition(background-color 0.1s linear); }
+%transition-opacity{ @include transition(opacity 0.2s linear); }
+
+%border-radius-normal{ @include border-radius(3px); }
+%border-radius-big{ @include border-radius(5px); }
+
+%opacity-hide{ @include opacity(0); }
+%opacity-show{ @include opacity(1); }
+
+@mixin bg-white-a{
+    background-color: white;
+    background-color: rgba(white, 0.4);
+}
+%bg-white-a{ @include bg-white-a; }
+@mixin bg-black-a{
+    background-color: $color2;
+    background-color: rgba(black, 0.4);
+}
+%bg-black-a{ @include bg-black-a; }
+
+/* ==========================================================================
+   UI
+   ========================================================================== */

@@ -1,0 +1,323 @@
+/*
+--DRAFT-- É
+@include selection($color1, $colorw);
+%draft{
+    @include box-sizing(border-box);
+    @include box-shadow(rgba(0,0,0,0.7) 0px -6px 5px);  @include box-shadow(inset black 5px 0px 7px -7px);
+    @extend .clearfix;
+    @extend .font-regular;
+    @include border-radius(3px);
+    @include transition(background-color 0.2s linear);
+    @include background(image-url("logo-small.png") no-repeat 0 0 transparent);
+    width: image-width("logo-small.png");
+    @include mysprite(picto-search-min);
+    margin-top: - mysprite-sprite-height(picto-search-min) / 2;
+    transparentize(black, 0.5); darken(#fff, 50%); lighten(#fff, 50%);
+}*/
+
+
+/* ==========================================================================
+   Helper classes from HTML5 BoilerPlate
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+    &:before{
+        content: "";
+        display: block;
+        width: 0;
+        height: 150%; 
+    }
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible { visibility: hidden; }
+
+
+/* ==========================================================================
+   MY Helper classes (Several taken from Twitter Bootstrap 2.2.2)
+   ========================================================================== */
+
+.clear{ clear: both; }
+
+.pull-right { float: right; }
+.pull-left { float: left; }
+
+.affix { position: fixed; }
+
+.hide-text {
+    color: transparent;
+    text-shadow: none;
+    overflow:hidden;
+    text-indent:-9000px;
+    display:block;
+}
+
+.input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+}
+
+.only-print{
+    display: none !important;
+    visibility: hidden;
+}
+
+.center *{text-align: center;}
+.acenter  { text-align: center; }
+.aleft    { text-align: left; }
+.aright   { text-align: right; }
+.ajustify { text-align: justify; }
+.uppercase  { text-transform: uppercase; }
+.small-caps { font-variant: small-caps; }
+
+/* include for before/after element, specify position,width,height like (absolute, 1px, 100%) */
+@mixin init-content($position:relative, $w:false, $h:false){
+    position: $position;
+    content: " ";
+    @if $w != false{
+        width: $w;
+    }
+    @if $h != false{
+        height: $h;
+    }
+}
+
+/* include image path & dimension */
+@mixin image($image, $retina: false, $contain: false){
+    background: image-url($image) no-repeat 0 0 transparent;
+    width: image-width($image);
+    height: image-height($image);
+    @if $retina != false {
+        @media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 3/2), (min--moz-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 144dppx) {
+            background-image: image-url($retina);
+
+            @if $contain == true {
+                background-size: contain;
+            } @else {
+                background-size: (image-width($retina) / 2) (image-height($retina) / 2);
+            }
+        }
+    }
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+        @content;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+@mixin selection($background, $color, $shadow: none) {
+    ::selection {
+        background: $background;
+        color: $color;
+        text-shadow: $shadow;
+    }
+    ::-moz-selection { /* Gecko */
+        background: $background;
+        color: $color;
+        text-shadow: $shadow;
+    }
+    ::-webkit-selection{
+        background: $background;
+        color: $color;
+        text-shadow: $shadow;
+    }
+}
+
+@mixin arrow($direction, $color, $width, $height, $distance-width, $distance-height){
+    
+    &:before, &:after{
+        position: absolute;
+        content: " ";
+        display: block;
+        width: $width;
+        height: $height;
+        background-color: $color;
+        
+        @if ($direction == 'top'){
+            top: $distance-height;
+        }
+        @else if ($direction == 'bottom'){
+            bottom: $distance-height;
+        }
+        @else if ($direction == 'left'){
+            left: $distance-width;
+        }
+        @else if ($direction == 'right'){
+            right: $distance-width;
+        }
+    }
+
+    @if ($direction == 'top'){
+        &:before{
+            @include rotate(45deg);
+            right: $distance-width;
+        }
+        &:after{
+            @include rotate(-45deg);
+            left: $distance-width;
+        }
+    }
+    @else if ($direction == 'bottom'){
+        &:before{
+            @include rotate(-45deg);
+            right: $distance-width;
+        }
+        &:after{
+            @include rotate(45deg);
+            left: $distance-width;
+        }
+    }
+    @else if ($direction == 'left'){
+        &:before{
+            @include rotate(-45deg);
+            top: $distance-height;
+        }
+        &:after{
+            @include rotate(45deg);
+            bottom: $distance-height;
+        }
+    }
+    @else if ($direction == 'right'){
+        &:before{
+            @include rotate(45deg);
+            top: $distance-height;
+        }
+        &:after{
+            @include rotate(-45deg);
+            bottom: $distance-height;
+        }
+    }
+}
+
+
+/* 
+*  @include triangle within a pseudo element and add positioning properties (ie. top, left)
+*  $direction: top, bottom, left, right, topleft, topright, bottomleft, bottomright
+*/
+@mixin triangle($direction, $color: #222, $height: 6px, $width-left: $height, $width-right: $width-left){
+    position: absolute;
+    display: block;
+    content: " ";
+    height: 0;
+    width: 0;
+    border-style: solid;
+    @if ($direction == 'top'){
+        border-width: 0 $width-right $height $width-left;
+        border-color: transparent transparent $color transparent;
+    }
+    @else if ($direction == 'bottom'){
+        border-width: $height $width-right 0 $width-left;
+        border-color: $color transparent transparent transparent;
+    }
+    @else if ($direction == 'left'){
+        border-width: $width-right $height $width-left 0;
+        border-color: transparent $color transparent transparent;
+    }
+    @else if ($direction == 'right'){
+        border-width: $width-right 0 $width-left $height;
+        border-color: transparent transparent transparent $color;
+    }
+    @else if ($direction == 'topleft'){
+        border-width: $height $width-left 0 0;
+        border-color: $color transparent transparent transparent;
+    }
+    @else if ($direction == 'topright'){
+        border-width: 0 $width-left $height 0;
+        border-color: transparent $color transparent transparent;
+    }
+    @else if ($direction == 'bottomleft'){
+        border-width: $height 0 0 $width-left;
+        border-color: transparent transparent transparent $color;
+    }
+    @else if ($direction == 'bottomright'){
+        border-width: 0 0 $height $width-left;
+        border-color: transparent transparent $color transparent;
+    }
+}
+
+%currency {
+    position: relative;
+    &:before {
+        content: '$';
+        position: relative;
+        left: 0;
+    }
+}
+.USD %currency:before { content: '$'; }
+.EUR %currency:before { content: '\20AC'; } // must escape the html entities for each currency symbol
+.ILS %currency:before { content: '\20AA'; }
+.GBP %currency:before { content: '\00A3'; }
+
+/* 
+*  @mixin ghost_vertical_align use css method to vertical center a bloc into div, using inline-block
+*  Child centered need to have: "display:inline-block; vertical-align:middle;"
+*  http://css-tricks.com/centering-in-the-unknown/
+*/
+@mixin ghost_vertical_align(){
+    &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%; 
+        margin-right: -0.28em; // FF bug that need 0.28em instead 0.25em
+    }
+}
+
+@mixin truncateText($overflow: ellipsis){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+
+@mixin animation($name, $duration: 1000ms, $iterations: infinite, $timing-function: ease, $delay: 0ms) {
+    // There is a FF bug that requires all time values to have units, even 0 !!!!!!
+    -webkit-animation: $name $duration $iterations $timing-function $delay;
+    -moz-animation: $name $duration $iterations $timing-function $delay;
+    -o-animation: $name $duration $iterations $timing-function $delay;
+    animation: $name $duration $iterations $timing-function $delay;
+}
+
+// Fix aliasing in webkit, ex: ugly font rendering when rotate element
+%webkit-antialiasing{ -webkit-transform: translate3d(0, 0, 0); }

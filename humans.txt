@@ -1,0 +1,8 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Front end developer : Cédric Ruiu
+    PHP developer : Charly Aman
+    Web designer: Aksel Boscato

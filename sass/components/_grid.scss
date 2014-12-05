@@ -1,0 +1,89 @@
+/* ================================================================== */
+/* DIMENSIONS & UNSEMANTIC CONFIG */
+/* ================================================================== */
+
+// Dimensions
+$header-height        : 100px; //desktop size
+$header-height-min    : 60px;  //desktop size
+$footer-height        : 412px;
+
+$media-mobile-min     : 320px;
+// Unsemantic config
+$media-mobile-max     : 670px;
+$media-tablet-min     : 671px;
+$media-tablet-max     : 1239px;
+$media-desktop-min    : 1240px;
+$container-max-width  : 1240px;
+$gutter-half          : 20px;
+
+$unsemantic-ie7-support: false;
+
+@import "unsemantic/unsemantic-vars";
+@import "unsemantic/unsemantic-ie-snap";
+
+@include unsemantic-grid-placeholders;
+@include unsemantic-grid-base-tablet;
+
+@media screen and (max-width: $media-mobile-max) {
+    @include unsemantic-grid-placeholders(mobile);
+    @include unsemantic-grid-scoped(mobile);
+}
+
+@media screen and (min-width: $media-tablet-min) and (max-width: $media-tablet-max) {
+    @include unsemantic-grid-placeholders(tablet);
+    @include unsemantic-grid-scoped(tablet);
+}
+
+@media screen and (min-width: $media-desktop-min) {
+    @include unsemantic-grid-placeholders(desktop);
+    @include unsemantic-grid-scoped(desktop);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE HELPER
+   ========================================================================== */
+
+/* Use like : @include respond-to(mobile) { width: 100% ;} */
+@mixin respond-to($media) {
+
+    @if $media == mobile {
+        @media only screen and (max-width: $media-mobile-max) { @content; }
+    }
+    @else if $media == tablet {
+        @media only screen and (min-width: $media-tablet-min) and (max-width: $media-tablet-max) { @content; }
+    }
+    @else if $media == mobile-tablet {
+        @media only screen and (max-width: $media-tablet-max) { @content; }
+    }
+    @else if $media == desktop {
+        @media only screen and (min-width: $media-desktop-min) { @content; }
+    }
+    @else if $media == tablet-desktop {
+        @media only screen and (min-width: $media-tablet-min) { @content; }
+    }
+}
+
+.show-only-mobile, 
+.show-only-tablet, 
+.show-only-desktop{
+    display: none;
+}
+
+
+@include respond-to(mobile) { 
+    .show-only-mobile{ display: block !important; }
+}
+
+@include respond-to(tablet) { 
+    .show-only-tablet{ display: block !important; }
+}
+
+@include respond-to(desktop) { 
+    .show-only-desktop{ display: block !important; }
+}
+
+.grid-container{
+    padding-left: 0;
+    padding-right: 0;
+}

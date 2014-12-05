@@ -1,0 +1,328 @@
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
+*{ @include box-sizing(border-box); }
+
+html, body{
+    height: 100%;
+    min-width: $media-mobile-min;
+}
+
+body{
+    color: $colorb;
+    font-size: 20px;
+    @extend .font-regular;
+}
+ 
+.layout{ 
+    position: relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    overflow: hidden;
+    background-color: $colorw;
+}
+
+
+/* ==========================================================================
+   HR
+   ========================================================================== */
+
+.hr-line{
+    position: relative;
+    clear: both;
+    background-color: #eff2f3; // Old browsers
+    @include filter-gradient(#eff2f3, #cbcfd0, vertical); // IE6-9
+    @include background-image(linear-gradient(top, #eff2f3 0%,#cbcfd0 100%));
+    @include box-shadow(rgba(0,0,0,0.8) 0 0 5px 0);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    z-index: 70;
+
+    hr{
+        position: relative;
+        max-width: 100%;
+        border: 0;
+        background-position: center;
+
+        @include respond-to(tablet-desktop) { 
+            @include image('ideogrammes.png');
+            margin: 30px auto; 
+        }
+        @include respond-to(mobile) { 
+            @include image('ideogrammes-min.png', 'ideogrammes-min_2x.png');
+            height: 27px; margin: 12px auto; 
+        }
+    }
+}
+
+.hr-line-2{
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin-top: 35px;
+}
+
+
+/* ==========================================================================
+   INLINE COMPONENTS
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6{
+    text-rendering: optimizeLegibility;
+    color: $color1;
+}
+
+h1{
+    @extend .font-title;
+    font-size: 30px;
+    line-height: 1em;
+    margin: 40px 0 20px 0;
+    &:first-child{ margin: 20px 0; }
+}
+
+h2{
+    @extend .font-bold;
+    font-size: 20px;
+    margin: 20px 0 10px 0;
+}
+
+h1 + .img, h2 + .img{ margin-top: 0; }
+
+.pull-left + h1, .pull-left + h2{ margin: 20px 0; }
+
+p{ 
+    line-height: 1.6em;
+    text-align: justify;
+    margin: 10px 0;
+
+    &:last-child{ margin-bottom: 0; }
+    &.acenter{ text-align: center; }
+    &.aleft{ text-align: left; }
+    &.aright{ text-align: right; }
+    &.ajustify{ text-align: justify; }
+}
+
+a{
+    color: $color1;
+    &:hover{ text-decoration: underline; }
+}
+
+img.img, .img{
+    position: relative;
+    max-width: 100%;
+    margin-top: 40px;
+    border: 0;
+    vertical-align:bottom;
+    @extend %border-radius-big;
+
+    &.pull-left{ 
+        margin-right: 20px; 
+        margin-bottom: 10px; }
+    &.pull-right{ 
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+ul:last-child{ margin-bottom: 0; }
+
+.fluid-width-video-wrapper{ margin-top: 20px; } // youtube iframe div
+
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+
+input, textarea{
+    /* reset */
+    outline: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -webkit-focus-ring-color: none;
+    &:focus{ outline: none; }
+    border: 0;
+
+    position: relative;
+    width: 100%;
+    @extend %border-radius-normal;
+}
+
+input[type="text"], input[type="email"]{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+
+    // Fix placeholder in Android 4.1
+    @include placeholder {
+        height: 40px;
+        line-height: 40px;
+        color: white;
+    }
+}
+
+input[type="submit"]{
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    line-height: 100%;
+    width: auto;
+    background-color: white;
+    background-color: rgba(white, 0.4);
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 40px;
+    padding: 10px 15px;
+    @extend %transition-bg;
+
+     @include respond-to(mobile) { margin-bottom: 0; }
+
+    &:hover{ background-color: white; }
+}
+
+textarea{
+    height: 150px;
+    padding: 20px 15px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+
+/* ==========================================================================
+   LISTS
+   ========================================================================== */
+
+ul{
+    list-style: none;
+    line-height: 1.4em;
+    text-align: justify;
+    padding-left: 17px;
+    margin-top: 10px;
+
+    li{ 
+        margin-top: 5px; 
+        &:first-child{ margin-top: 0; }
+
+        &:before{
+            position: absolute;
+            content: "• ";
+            color: $colorb;
+            margin-left: -12px;
+        }
+    }
+}
+
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+/*.table-container{
+    position: relative;
+    width: 100%;
+    @include tablesaw-stack( $media-minimobile-max );
+
+    .tablesaw-stack td .tablesaw-cell-label, .tablesaw-stack th .tablesaw-cell-label{
+        display: block;
+    }
+
+    @include respond-to(minimobile) { 
+        border-bottom: 1px solid darken($color1, 10%);
+
+        td{
+            border-right: 1px solid darken($color1, 10%);
+            &:first-child{ border-left: 1px solid darken($color1, 10%); }
+        }
+        tr td:first-child{ background-color: $color1; }
+    }
+}*/
+
+table{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: collapse;
+    
+    thead{
+        background-color: $color1;
+        @extend .font-bold;
+
+        th{ 
+            font-weight: normal; 
+            border-top: 0;
+        }
+    }
+
+    tbody{
+        background-color: #e6d789;
+    }
+    
+    th, td{
+        padding: 25px 13px;
+        vertical-align: middle;
+        border-top: 1px solid darken($color1, 10%);
+        border-left: 1px solid darken($color1, 10%);
+
+        @include respond-to(mobile) { padding: 10px 5px; }
+
+        &:first-child{ border-left: 0; }
+    }
+
+    ul{
+        padding-left: 10px;
+        &:first-child{ margin-top: 0; }
+    }
+}
+
+
+/* ==========================================================================
+   GENERAL COMPONENTS
+   ========================================================================== */
+
+// Alert box
+
+%alert{
+    position: relative;
+    width: 100%;
+    padding: 14px 20px;
+    margin: 0 0 20px 0;
+    background-color: #cfc9ca;
+    @extend %border-radius-normal;
+    @extend .font-bold;
+}
+
+.alert-success{
+    @extend %alert;
+    color: $color-success;
+}
+
+.alert-error{
+    @extend %alert;
+    color: $color-error;
+}
+
+
+/* ==========================================================================
+   BROWSER HAPPY
+   ========================================================================== */
+
+.browsehappy{
+    position: relative;
+    display: block;
+    padding: 15px 0;
+    margin: 0;
+    background-color: $color1;
+    color: #000;
+    text-align: center;
+    @extend .font-bold;
+}

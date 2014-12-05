@@ -1,4 +1,6 @@
+# SASS files and folder
 .sass-cache
+fire_app_log.txt
 
 # =========================
 # Operating System Files
@@ -12,7 +14,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
