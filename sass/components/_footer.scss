@@ -237,72 +237,88 @@ a.headline, .headline{
         display: inline-block;
         top: 4px;
     }
+}
 
-    a.top{
-        @include triangle(top, darken($colorw, 10), 43px);
-        @include transition(all 0.5s ceaser($easeInOutBack));
-        position: fixed;
-        display: inline-block;
-        bottom: 0;
-        text-align: center;
-        text-decoration: none;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        
-        @include respond-to(desktop) { 
-            &:hover{
-                border-width: 0 86px 86px 86px;
+a.top{
+    border-color: transparent transparent darken($colorw, 10) transparent;
+    @include triangle(top, rgba(white, 0.4), 43px);
+    @include transition(all 0.5s ceaser($easeInOutBack));
+    position: fixed;
+    display: inline-block;
+    bottom: 0;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    
+    @include respond-to(desktop) { 
+        &:hover{
+            border-color: transparent transparent white transparent;
+            border-width: 0 86px 86px 86px;
 
-                p{ @include opacity(1); }
+            span{
+                .no-js &, .no-csstransforms &{
+                    border-color: transparent transparent black transparent;
+                }
+                .csstransforms &{
+                    &:before, &:after{
+                        background-color: black;
+                    }
+                }
             }
+
+            p{ @include opacity(1); }
         }
-        
+    }
+    
+    span{
+        display: block;
 
-        span{
-            display: block;
+        .no-js &, .no-csstransforms &{
+            left: 50%;
+            margin: 0 0 0 -12px;
+            position: relative;
+            top: 15px;
 
-            .no-js &, .no-csstransforms &{
-                left: 50%;
-                margin: 0 0 0 -12px;
-                position: relative;
+            @include triangle(top, white, 12px);
+        }            
+
+        .csstransforms &{
+            position: relative;
+
+            &:before, &:after{
+                position: absolute;
+                content: " ";
+                display: block;
+                width: 12px;
+                height: 5px;
+                background-color: white;
                 top: 15px;
-                @include triangle(top, #000, 12px);
-            }            
+                @include transition(background-color 0.5s ceaser($easeInOutBack));
+            }
 
-            .csstransforms &{
-                position: relative;
+            &:before{
+                @include rotate(45deg);
+                right: -9px;
+            }
 
-                &:before, &:after{
-                    position: absolute;
-                    content: " ";
-                    display: block;
-                    width: 12px;
-                    height: 5px;
-                    background-color: #000;
-                    top: 15px;
-                }
-
-                &:before{
-                    @include rotate(45deg);
-                    right: -9px;
-                }
-
-                &:after{
-                    @include rotate(-45deg);
-                    left: -9px;
-                }
+            &:after{
+                @include rotate(-45deg);
+                left: -9px;
             }
         }
+    }
 
-        p{
-            color: #000;
-            margin: 50px 0 0 -87.5px;
-            text-align: center;
-            width: 175px;
-            @include transition(opacity 0.5s linear);
-            @extend %opacity-hide;
-        }
+    p{
+        color: #000;
+        margin: 50px 0 0 -87.5px;
+        text-align: center;
+        width: 175px;
+        font-variant: small-caps;
+        @include transition(opacity 0.5s linear);
+        @extend %opacity-hide;
+        @extend .font-bold;
     }
 }
