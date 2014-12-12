@@ -125,31 +125,49 @@
 .main{
     position: relative;
     @include box-shadow(rgba(0,0,0,0.8) 0 6px 5px -3px);
-    z-index: 40;
+    z-index: 30;
 
-    div:last-child{ padding-bottom: 30px; }
+    //div:last-child{ padding-bottom: 30px; }
 
     .grid-parent{ clear: both; }
+
+    > div:first-child{ 
+        margin-top: 0;
+        &:before{ display: none; }
+    }
 }
 
-.slice-1{
+.slice{
     position: relative;
-    margin-top: 30px;
-    background-color: $colorw;
-    color: $colorb;
-}
-
-.slice-2{
-    position: relative;
-    margin-top: 80px;
-    background-color: $color1;
-    color: white;
-    h1, h2, h3, a, p{ color: white; }
-
+    padding: 50px 0 100px 0;
     &:before{
-        @include image('frise-green.png');
-        @include init-content(absolute, 100%);
-        background-repeat: repeat-x;
         top: -50px;
     }
 }
+
+@mixin slice($bg-color, $color, $img, $img-min){
+    //@extend %slice;
+    background-color: $bg-color;
+    color: $color;
+    &:before{
+        @include respond-to(tablet-desktop) { 
+            @include image($img); 
+            @include init-content(absolute, 100%);
+            background-repeat: repeat-x;
+        }
+        @include respond-to(mobile) { 
+            @include image($img-min);
+            @include init-content(absolute, 100%);
+            background-repeat: repeat-x;
+        }
+    }
+}
+
+.slice-w{
+    @include slice($colorw, $colorb, 'frise-w.png', 'frise-w-min.png');
+}
+
+.slice-g{
+    @include slice($color1, white, 'frise-g.png', 'frise-g-min.png');
+}
+
