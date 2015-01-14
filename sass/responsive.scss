@@ -142,11 +142,13 @@
     padding: 50px 0 100px 0;
     &:before{
         top: -50px;
+        @include respond-to(mobile) {
+            top: -36px;
+        }
     }
 }
 
 @mixin slice($bg-color, $color, $img, $img-min){
-    //@extend %slice;
     background-color: $bg-color;
     color: $color;
     &:before{
@@ -165,9 +167,17 @@
 
 .slice-w{
     @include slice($colorw, $colorb, 'frise-w.png', 'frise-w-min.png');
+
+    h1, h2{ color: $colorb; }
 }
 
 .slice-g{
     @include slice($color1, white, 'frise-g.png', 'frise-g-min.png');
+
+    h1, h2{ color: white; }
+
+    h1:after{
+        background-color: white;
+    }
 }
 

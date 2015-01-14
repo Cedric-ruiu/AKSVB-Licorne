@@ -13,6 +13,9 @@ body{
     color: $colorb;
     font-size: 20px;
     @extend .font-regular;
+    @include respond-to(mobile) {
+        font-size: 16px;
+    }
 }
  
 .layout{ 
@@ -29,7 +32,7 @@ body{
    HR
    ========================================================================== */
 
-.hr-line{
+.ideogrammes{
     position: relative;
     clear: both;
     background-color: #eff2f3; // Old browsers
@@ -57,13 +60,20 @@ body{
     }
 }
 
-.hr-line-2{
+/*.hr-line-2{
     position: relative;
     width: 100%;
     height: 1px;
     background-color: white;
     margin-top: 35px;
 }
+
+.line{
+    position: relative;
+    height: 1px;
+    width: 80%;
+    background-color: white;
+}*/
 
 
 /* ==========================================================================
@@ -72,15 +82,34 @@ body{
 
 h1, h2, h3, h4, h5, h6{
     text-rendering: optimizeLegibility;
-    color: $color1;
+    color: $colorb;
 }
 
 h1{
+    position: relative;
     @extend .font-title;
+    margin: 40px 0 20px 0;
+    padding-bottom: 20px;
     font-size: 30px;
     line-height: 1em;
-    margin: 40px 0 20px 0;
+    text-align: center;
     &:first-child{ margin: 20px 0; }
+    &:after{
+        @include init-content(absolute, 60%, 1px);
+        background-color: $colorb;
+        left: 20%;
+        bottom: 0;
+    }
+
+    @include respond-to(mobile-tablet) {
+        &:after{
+            left: 0;
+            width: 100%;
+        }
+    }
+    @include respond-to(mobile) {
+        font-size: 25px;
+    }
 }
 
 h2{
@@ -181,7 +210,7 @@ input[type="submit"]{
     padding: 10px 15px;
     @extend %transition-bg;
 
-     @include respond-to(mobile) { margin-bottom: 0; }
+    @include respond-to(mobile) { margin-bottom: 0; }
 
     &:hover{ background-color: white; }
 }
