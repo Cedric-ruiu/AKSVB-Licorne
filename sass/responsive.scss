@@ -174,7 +174,7 @@
 .slice-g{
     @include slice($color1, white, 'frise-g.png', 'frise-g-min.png');
 
-    h1, h2{ color: white; }
+    h1, h2, a{ color: white; }
 
     h1:after{
         background-color: white;
