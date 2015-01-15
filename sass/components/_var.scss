@@ -2,14 +2,14 @@
    TYPOGRAPHY
    ========================================================================== */
 
-$font-regular: 'Open Sans', Verdana, sans-serif;
-$font-large:   'Kaushan Script', Verdana, cursive, sans-serif;
+$font-regular: 'Open Sans', Verdana, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+$font-large:   'Kaushan Script', Verdana, "KaiTi", "楷体", STKaiti, "华文楷体", cursive, serif;
 
-.font-regular{  font-family: $font-regular; font-weight: 300; }
-.font-bold{     font-family: $font-regular; font-weight: 800; }
-.font-title{    font-family: $font-large; font-weight: 400; @extend %lang-fix; }
+.font-regular{ font-family: $font-regular; font-weight: 300; }
+.font-bold{    font-family: $font-regular; font-weight: 800; }
+.font-title{   font-family: $font-large; font-weight: 400; @extend %font-title-fix; }
 
-%lang-fix{
+%font-title-fix{
     .vi &{
         font-family: $font-regular;
         font-weight: 800;
