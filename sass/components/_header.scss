@@ -180,6 +180,8 @@ ul.header-menu{
             padding: 0 20px;
             text-indent: -7px;
         }
+
+        .vi &{ font-size: 22px;}
     }
 
     @include respond-to(tablet) {

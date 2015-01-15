@@ -12,6 +12,7 @@ $font-large:   'Kaushan Script', Verdana, cursive, sans-serif;
 %lang-fix{
     .vi &{
         font-family: $font-regular;
+        font-weight: 800;
     }
 }
 
