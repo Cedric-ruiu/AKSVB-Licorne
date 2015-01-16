@@ -28,7 +28,6 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    z-index: 50;
     @include image('background-contact.jpg');
     @include background-size(cover);
     width: auto;
@@ -221,9 +220,8 @@ a.headline, .headline{
     height: 112px;
     width: 100%;
     color: #fff;
-    font-size: 12px;
+    font-size: 13px;
     overflow: hidden;
-    z-index: 100;
     @extend .clearfix;
     @extend %bg-white-a;
 
@@ -240,14 +238,15 @@ a.headline, .headline{
 }
 
 a.top{
-    border-color: transparent transparent darken($colorw, 10) transparent;
-    @include triangle(top, rgba(white, 0.4), 43px);
+    border-color: transparent transparent darken($colorb, 10) transparent; //fallback no-rgba
+    @include triangle(top, rgba(black, 0.4), 43px);
     @include transition(all 0.5s ceaser($easeInOutBack));
     position: fixed;
     display: inline-block;
     bottom: 0;
     text-align: center;
     text-decoration: none;
+    font-size: 12px;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -255,19 +254,8 @@ a.top{
     
     @include respond-to(desktop) { 
         &:hover{
-            border-color: transparent transparent white transparent;
+            border-color: transparent transparent rgba(black, 0.8) transparent;
             border-width: 0 86px 86px 86px;
-
-            span{
-                .no-js &, .no-csstransforms &{
-                    border-color: transparent transparent black transparent;
-                }
-                .csstransforms &{
-                    &:before, &:after{
-                        background-color: black;
-                    }
-                }
-            }
 
             p{ @include opacity(1); }
         }
@@ -283,7 +271,7 @@ a.top{
             top: 15px;
 
             @include triangle(top, white, 12px);
-        }            
+        } 
 
         .csstransforms &{
             position: relative;
@@ -294,9 +282,9 @@ a.top{
                 display: block;
                 width: 12px;
                 height: 5px;
-                background-color: white;
+                background-color: $colorw;
                 top: 15px;
-                @include transition(background-color 0.5s ceaser($easeInOutBack));
+                //@include transition(background-color 0.5s ceaser($easeInOutBack));
             }
 
             &:before{
@@ -312,12 +300,12 @@ a.top{
     }
 
     p{
-        color: #000;
+        color: $colorw;
         margin: 50px 0 0 -87.5px;
         text-align: center;
         width: 175px;
         font-variant: small-caps;
-        @include transition(opacity 0.5s linear);
+        @include transition(opacity 0.5s ceaser($easeInOutBack));
         @extend %opacity-hide;
         @extend .font-bold;
     }

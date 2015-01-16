@@ -116,19 +116,6 @@ $(document).ready(function()
         }
     });
 
-
-    /* ==========================================================================
-        EVENTS
-       ========================================================================== */
-
-    var method_slide_event = '';
-    var c_event = null;
-    $('#events li:not(.empty)').on('click', function() {
-        c_event = $(this);
-        method_slide_event = (c_event.hasClass('on')) ? 'slideUp' : 'slideDown';
-        c_event.children('.content').velocity(method_slide_event, { duration: 500 });
-        c_event.toggleClass('on');
-    });
 });
 
 
@@ -141,50 +128,5 @@ window.onload = function()
     if($('#slideshow').length)
     {
         $('#slideshow').bxSlider({controls:false, auto:true, pause:6500});
-    }
-
-
-    /* ==========================================================================
-       VERTICALLY CENTER FLOATING DIV
-       ========================================================================== */
-
-    var current_height = 0;
-    var current_width  = 0;
-    var brother_height = 0;
-
-    $( window ).resize(function() {
-        parse_center_div_float();
-    });
-
-    parse_center_div_float();
-    
-    function parse_center_div_float()
-    {
-        $('.grid-center-l').each(function(){ center_div_float($(this), $(this).next()); });
-        $('.grid-center-r').each(function(){ center_div_float($(this), $(this).prev()); });
-    }
-    
-    function center_div_float(current, brother)
-    {
-        current_width = parseFloat(current.css('width')) + parseFloat(current.css('padding-left')) + parseFloat(current.css('padding-right'));
-        parent_width = parseFloat(current.parent().css('width')) + parseFloat(current.parent().css('padding-left')) + parseFloat(current.parent().css('padding-right'));
-        if(1 > (current_width / parseFloat(current.parent().css('width'))) )
-        {
-            current_height = current.outerHeight();
-            brother_height = brother.outerHeight();
-
-            if(current_height < brother_height)
-            {
-                current.css('margin-top', ((brother_height - current_height) / 2) +'px' );
-            }
-            else
-            {
-                current.css('margin-top', 0);
-            }
-        }
-        else
-        {
-            current.css('margin-top', 0);
-        }
     }
 }
