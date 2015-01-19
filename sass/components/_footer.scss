@@ -153,7 +153,6 @@ a.headline, .headline{
     color: white;
     font-size: 16px;
     @extend .clearfix;
-    @include box-shadow(rgba(0,0,0,0.8) 0 6px 5px -3px);
 
     @include respond-to(mobile) {
         padding-top: 30px;
@@ -222,6 +221,7 @@ a.headline, .headline{
     color: #fff;
     font-size: 13px;
     overflow: hidden;
+    @include box-shadow(rgba(0,0,0,0.8) 0 -4px 5px -3px);
     @extend .clearfix;
     @extend %bg-white-a;
 
