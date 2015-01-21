@@ -6,10 +6,22 @@
     left: 0;
     z-index: 100;
     color: black;
+    @include transform(translateY(0));
     @include box-shadow(rgba(0,0,0,0.8) 0px 2px 5px);
     @extend %bg-white-a;
 
-    @include respond-to(mobile) { height: $header-height-min; }
+    @include respond-to(mobile) { 
+        height: $header-height-min;
+    }
+
+    @include respond-to(mobile-tablet) { 
+        position: fixed;
+        @include transition(background-color 0.5s ease);
+    }
+    
+    @include respond-to(desktop) { 
+        @include transition(transform 0.5s ceaser($easeInOutBack));
+    }
 
     ul{ 
         margin: 0;
@@ -21,10 +33,61 @@
         text-decoration: none; 
         &:hover{ color: white; }
     }
+
+    &.fixed{
+        height: $header-height-min;
+        background-color: white;
+
+        .lang-menu{ 
+            p{ line-height: $header-height-min; }
+            ul{ top: $header-height-min; }
+        }
+        .facebook-logo:before{ top: 20px; }
+        a.title-aksvb{
+            .title{
+                font-size: 14px;
+                margin-bottom: 8px;
+                &:after{
+                    bottom: 21px;
+                    width: 137px;
+                }
+            }
+            .subtitle{ font-size: 9px; }
+            .logo-aksvb-danse{
+                left: 141px;
+                @include use-sprite(aksvb-danse-licorne-dragon-min); 
+            }
+        }
+
+        @include respond-to(desktop) {
+            position: fixed;
+            .csstransforms &{
+                @include transform(translateY(60px));
+                top: -60px;
+            }
+            .header-menu{ 
+                line-height: $header-height-min;
+                & li:hover, & li.on{
+                    background-color: #ddd;
+                    a{ color:black; }
+                }
+            }
+            & .header-menu li:hover, & .header-menu li.on{
+                background-color: #ddd;
+                a{ color:black; }
+            }
+        }
+
+        @include respond-to(tablet) { 
+            .header-menu{ top: $header-height-min; }
+            .control-menu-mobile span{ top: 29px; }
+        }
+    }
 }
 
 .header-title-container{
     position: absolute;
+    overflow: visible;
     height: 100%;
     top: 0;
     left: 0;
@@ -141,7 +204,7 @@ ul.header-menu{
 
     li{
         @extend %transition-bg;
-        &:hover{ @extend %bg-black-a; }
+        &:hover, &.on{ @extend %bg-black-a; }
         &:after{ @extend %bg-black-a; }
     }
 
