@@ -16,6 +16,13 @@
     background-color: rgba(white, 0.4);
 }
 %bg-white-a{ @include bg-white-a; }
+
+@mixin bg-white2-a{
+    background-color: white;
+    background-color: rgba(white, 0.2);
+}
+%bg-white2-a{ @include bg-white2-a; }
+
 @mixin bg-black-a{
     background-color: $color2;
     background-color: rgba(black, 0.4);
