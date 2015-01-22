@@ -242,25 +242,29 @@ ul{
    TABLES
    ========================================================================== */
 
-/*.table-container{
+.table-container{
     position: relative;
     width: 100%;
-    @include tablesaw-stack( $media-minimobile-max );
+    @include tablesaw-stack( $media-mobile-max );
 
     .tablesaw-stack td .tablesaw-cell-label, .tablesaw-stack th .tablesaw-cell-label{
         display: block;
     }
 
-    @include respond-to(minimobile) { 
-        border-bottom: 1px solid darken($color1, 10%);
+    .tablesaw-stack tbody tr { border-bottom: 0; }
+
+    & .tablesaw-stack td, & .tablesaw-stack th { text-align: center; }
+
+    @include respond-to(mobile) { 
+        border-bottom: 1px solid $color1;
 
         td{
-            border-right: 1px solid darken($color1, 10%);
-            &:first-child{ border-left: 1px solid darken($color1, 10%); }
+            border-right: 1px solid $color1;
+            &:first-child{ border-left: 1px solid $color1; }
         }
-        tr td:first-child{ background-color: $color1; }
+        tr td:first-child{ background-color: #bfd8b5; }
     }
-}*/
+}
 
 table{
     position: relative;
@@ -270,26 +274,29 @@ table{
     text-align: center;
     border-spacing: 0;
     border-collapse: collapse;
+    color: #333;
     
     thead{
-        background-color: $color1;
-        @extend .font-bold;
+        background-color: #bfd8b5;
 
         th{ 
-            font-weight: normal; 
+            @extend .font-bold;
+            
             border-top: 0;
         }
     }
 
     tbody{
-        background-color: #e6d789;
+        background-color: #98c281;
     }
+
+    tr{ border: 0; }
     
     th, td{
         padding: 25px 13px;
         vertical-align: middle;
-        border-top: 1px solid darken($color1, 10%);
-        border-left: 1px solid darken($color1, 10%);
+        border-top: 1px solid $color1;
+        border-left: 1px solid $color1;
 
         @include respond-to(mobile) { padding: 10px 5px; }
 
