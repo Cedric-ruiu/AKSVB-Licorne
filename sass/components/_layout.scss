@@ -255,6 +255,8 @@ ul{
 
     & .tablesaw-stack td, & .tablesaw-stack th { text-align: center; }
 
+    + h2{ margin-top: 40px; }
+
     @include respond-to(mobile) { 
         border-bottom: 1px solid $color1;
 
