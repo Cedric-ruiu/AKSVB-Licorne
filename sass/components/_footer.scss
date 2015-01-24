@@ -225,7 +225,7 @@ a.headline, .headline{
     @extend .clearfix;
     @extend %bg-white2-a;
 
-    p{ text-align: center;margin: 35px 0 0 0; }
+    p{ text-align: center;margin: 16px 0 0 0; }
 
     a{ color: white; }
 
@@ -234,6 +234,11 @@ a.headline, .headline{
         position: relative;
         display: inline-block;
         top: 4px;
+    }
+
+    .mentions-legales{
+        font-size: 10px;
+        font-style: normal;
     }
 }
 
@@ -284,7 +289,6 @@ a.top{
                 height: 5px;
                 background-color: $colorw;
                 top: 15px;
-                //@include transition(background-color 0.5s ceaser($easeInOutBack));
             }
 
             &:before{

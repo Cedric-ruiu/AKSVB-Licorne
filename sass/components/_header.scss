@@ -30,7 +30,9 @@
 
     a{ 
         color: black;
-        text-decoration: none; 
+        text-decoration: none;
+        font-style: normal;
+        @extend .font-title;
         &:hover{ color: white; }
     }
 

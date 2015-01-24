@@ -179,5 +179,8 @@
     h1:after{
         background-color: white;
     }
+
+    li:before{ color: $colorw; }
+    table li:before{ color: $colorb; }
 }
 
