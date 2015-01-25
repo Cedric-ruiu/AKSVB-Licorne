@@ -166,7 +166,7 @@ img.img, .img{
 }
 
 img.circle{
-    @include border-radius(50%);
+    @extend %border-radius-entire;
     max-width: 100%;
 
     &.pull-left{
@@ -223,7 +223,7 @@ img.circle{
 
     img{
         @include transition(all 0.5s ease);
-        @include border-radius(50%);
+        @extend %border-radius-entire;
         width: 100%;
         height: 100%;
         margin: 0;
@@ -249,14 +249,12 @@ img.circle{
         left: 0;
         &:before, &:after{
             @include init-content(absolute, 100%, 100%);
-            @include border-radius(50%);
+            @extend %border-radius-entire;
             @include box-shadow(rgba(white, 0.4) 0 0 0 20px inset);
             top: 0;
             left: 0;
         }
     }
-
-    
 
     @include respond-to(mobile) { 
         display: block;

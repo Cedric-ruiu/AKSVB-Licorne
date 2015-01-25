@@ -32,7 +32,7 @@
         color: black;
         text-decoration: none;
         font-style: normal;
-        @extend .font-title;
+        
         &:hover{ color: white; }
     }
 
@@ -41,10 +41,20 @@
         background-color: white;
 
         .lang-menu{ 
+            a{ color: $colorb; }
             p{ line-height: $header-height-min; }
-            ul{ top: $header-height-min; }
+            li:before{ background-color: $color2 }
+            ul{ 
+                top: $header-height-min;
+                border-top: 1px solid $color2;
+                background-color: $color3;
+            }
+            &:hover, &.on{ background-color: $color3; }
         }
-        .facebook-logo:before{ top: 20px; }
+        .facebook-logo{
+            &:before{ top: 20px; }
+            &:hover, &:active{ background-color: $color3; }
+        }
         a.title-aksvb{
             .title{
                 font-size: 14px;
@@ -70,19 +80,29 @@
             .header-menu{ 
                 line-height: $header-height-min;
                 & li:hover, & li.on{
-                    background-color: #ddd;
+                    background-color: $color3;
                     a{ color:black; }
                 }
-            }
-            & .header-menu li:hover, & .header-menu li.on{
-                background-color: #ddd;
-                a{ color:black; }
             }
         }
 
         @include respond-to(tablet) { 
             .header-menu{ top: $header-height-min; }
-            .control-menu-mobile span{ top: 29px; }
+            .control-menu-mobile {
+                &.on{ background-color: $color3; }
+                span{ top: 29px; }
+            }
+        }
+        
+        @include respond-to(mobile-tablet) { 
+            ul.header-menu li{
+                background-color: $colorb;
+                background-color: rgba(black, 0.7);
+                &:hover, &.on{
+                    background-color: black;
+                    //background-color: rgba(black, 0.9);
+                }
+            }
         }
     }
 }
@@ -201,7 +221,6 @@ a.title-aksvb{
    ========================================================================== */
 
 ul.header-menu{
-    @extend .font-title;
     @extend %bg-black-a;
 
     li{
@@ -209,6 +228,8 @@ ul.header-menu{
         &:hover, &.on{ @extend %bg-black-a; }
         &:after{ @extend %bg-black-a; }
     }
+
+    a{ @extend .font-title; }
 
     @include respond-to(desktop) {
         position: absolute;
@@ -303,6 +324,7 @@ ul.header-menu{
     top: 0;
     right: 0;
     font-size: 16px;
+    z-index: 150;
     
     @extend %transition-bg;
     @include transition(right 0.2s linear);
@@ -388,7 +410,9 @@ ul.header-menu{
         height: 100%;
         text-align: center;
         color: white;
-        &.on, &:hover{ color: black; }
+        @extend .font-regular;
+
+        &.on, &:hover{ @extend .font-bold; }
     }
 }
 

@@ -7,6 +7,7 @@
 
 %border-radius-normal{ @include border-radius(3px); }
 %border-radius-big{ @include border-radius(5px); }
+%border-radius-entire{ @include border-radius(50%); }
 
 %opacity-hide{ @include opacity(0); }
 %opacity-show{ @include opacity(1); }
