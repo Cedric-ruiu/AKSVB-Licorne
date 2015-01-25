@@ -69,7 +69,7 @@ a.headline, .headline{
         @extend .font-bold;
         
         @include respond-to(mobile) {
-            margin: 18px 0 0 54px;
+            margin: 6px 0 0 54px;
             font-size: 13.51px;
         }
         @include respond-to(tablet-desktop) {
