@@ -32,7 +32,7 @@ $(document).ready(function()
     var method_menu_mobile = '';
     control_menu_mobile.on('click', function() {
         method_menu_mobile = ($(this).hasClass('on')) ? 'slideUp' : 'slideDown';
-        $('#header-menu').velocity(method_menu_mobile, { duration: 500 });
+        header_menu.velocity(method_menu_mobile, { duration: 500 });
         $(this).toggleClass('on');
     });
 
@@ -102,7 +102,7 @@ $(document).ready(function()
         lng: 7.7551067,
         title: 'Salle de AKSVB à l\'école du Neufeld',
         infoWindow: {
-            content: '<div class="info" style="width:200px;"><div class="aksvb-logo-min-r"></div><p class="font-bold">Ecole du Neufeld</p><p>1, rue de Sundgau<br>67000 Strasbourg</p><a target="_blank" href="https://www.google.fr/maps/place/Ecole+du+Neufeld/@48.5658764,7.7566517,16z/data=!4m2!3m1!1s0x0:0xabba55e97668c48">Voir le plan complet</a></div>',
+            content: '<div class="info" style="width:200px;"><div class="aksvb-logo-min-b"></div><p class="font-bold">Ecole du Neufeld</p><p>1, rue de Sundgau<br>67000 Strasbourg</p><a target="_blank" href="https://www.google.fr/maps/place/Ecole+du+Neufeld/@48.5658764,7.7566517,16z/data=!4m2!3m1!1s0x0:0xabba55e97668c48">Voir le plan complet</a></div>',
             maxWidth: 250
         }
     });
