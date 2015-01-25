@@ -158,10 +158,16 @@ img.img, .img{
     .circle{ margin: 25px 0; }
 
     + h2{ margin-top: 20px; }
+
+    @include respond-to(mobile) { 
+        width: 100%;
+        left: 0;
+    }
 }
 
 img.circle{
     @include border-radius(50%);
+    max-width: 100%;
 
     &.pull-left{
         margin-right: 20px;
@@ -174,15 +180,67 @@ img.circle{
 .circle-twofaces{
     position: relative;
     display: inline-block;
-    max-width: 380px;
-    max-height: 380px;
+    width: 380px;
+    height: 380px;
     margin: 35px 15px 100px 15px;
     overflow: visible;
-    @include transform-style(preserve-3d);
-    @include perspective(700px);
 
-    @include respond-to(mobile) { 
-        margin: 20px 0;
+    .csstransforms3d &{
+        @include transform-style(preserve-3d);
+        @include perspective(700px);
+
+        &:hover ,&.on{
+            .shadow:before{ @include rotateY(-180deg); }
+            .shadow:after{ @include rotateY(0); }
+            img{
+                &:first-child{ @include rotateY(0); }
+                &+img{ @include rotateY(-180deg); }
+            }
+        }
+
+        img{
+            @include transform-style(preserve-3d);
+            @include backface-visibility(hidden);
+            &:first-child{ @include rotateY(-180deg); }
+        }
+
+        & .shadow:before, & .shadow:after{
+            @include transition(all 0.5s ease);
+            @include transform-style(preserve-3d);
+            @include backface-visibility(hidden);
+            @include perspective(700px);
+        }
+        .shadow:before{ @include rotateY(0); }
+        .shadow:after{ @include rotateY(-180deg); }
+    }
+
+    .no-csstransforms3d &, .no-js &{
+        &:hover ,&.on{
+            img + img{ @include opacity(0); }
+        }
+        .shadow:before{ display: none; }
+    }
+
+    img{
+        @include transition(all 0.5s ease);
+        @include border-radius(50%);
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: 0;
+
+        &+img{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    p{
+        @extend .font-title;
+        font-size: 30px;
+        margin-top: 13px;
+        text-align: center;
     }
 
     .shadow{
@@ -192,56 +250,22 @@ img.circle{
         &:before, &:after{
             @include init-content(absolute, 100%, 100%);
             @include border-radius(50%);
-            @include transition(all 0.5s ease);
-            @include transform-style(preserve-3d);
-            @include backface-visibility(hidden);
-            @include perspective(700px);
-            
             @include box-shadow(rgba(white, 0.4) 0 0 0 20px inset);
             top: 0;
             left: 0;
-            
-            /*.no-rgba &{
-                @include opacity(0.4);
-            }*/
         }
     }
 
-    .shadow:before{ @include rotateY(0); }
-    .shadow:after{ @include rotateY(-180deg); }
+    
 
-    img{
-        @include transition(all 0.5s ease);
-        @include border-radius(50%);
-        @include transform-style(preserve-3d);
-        @include backface-visibility(hidden);
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        border: 0;
+    @include respond-to(mobile) { 
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 280px;
+        height: 280px;
 
-        &:first-child{ @include rotateY(-180deg); }
-        &+img{
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-    }
-
-    &:hover{
-        .shadow:before{ @include rotateY(-180deg); }
-        .shadow:after{ @include rotateY(0); }
-        img{
-            &:first-child{ @include rotateY(0); }
-            &+img{ @include rotateY(-180deg); }
-        }
-    }
-
-    p{
-        @extend .font-title;
-        font-size: 30px;
-        margin-top: 13px;
-        text-align: center;
+        p{ font-size: 20px; }
     }
 }
 

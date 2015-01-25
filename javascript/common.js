@@ -32,7 +32,7 @@ $(document).ready(function()
     var method_menu_mobile = '';
     control_menu_mobile.on('click', function() {
         method_menu_mobile = ($(this).hasClass('on')) ? 'slideUp' : 'slideDown';
-        $('#header-menu').velocity(method_menu_mobile, { duration: 500 })
+        $('#header-menu').velocity(method_menu_mobile, { duration: 500 });
         $(this).toggleClass('on');
     });
 
@@ -125,17 +125,17 @@ $(document).ready(function()
 
             // manual config target
             switch(href) 
-            { 
-                case "#m-contact": 
+            {
+                case "#m-contact":
                     offset_top = $(href).offset().top-header_menu_height+1;
-                    break; 
-                default: 
+                    break;
+                default:
                     offset_top = $(href).offset().top-header_menu_height_comfort+1;
-                    break; 
+                    break;
             }
 
             $('html,body').velocity(
-                'scroll', 
+                'scroll',
                 {offset: offset_top, duration: 500}
             );
 
@@ -177,7 +177,7 @@ $(document).ready(function()
         // Get id of current scroll item
         var cur = scrollItems.map(function()
         {
-            if ($(this).offset().top < fromTopMenu) return this;
+            if ($(this).offset().top < from_top_menu) return this;
         });
 
         // Get the id of the current element
@@ -191,13 +191,21 @@ $(document).ready(function()
             menu_items
             .parent().removeClass("on")
             .end().filter("[href=#"+id+"]").parent().addClass("on");
-        }                   
+        }
     });
 
+
+    /* ==========================================================================
+       Touch circle
+       ========================================================================== */
+
+    $('.circle-twofaces').on('click', function() {
+        $(this).toggleClass('on');
+    });
 });
 
 
-window.onload = function() 
+window.onload = function()
 {
     /* ==========================================================================
        Slideshow
@@ -209,4 +217,4 @@ window.onload = function()
     {
         slideshow.bxSlider({controls:false, auto:true, pause:6500});
     }
-}
+};
