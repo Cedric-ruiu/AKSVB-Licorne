@@ -185,39 +185,46 @@ img.circle{
     margin: 35px 15px 100px 15px;
     overflow: visible;
 
-    .csstransforms3d &{
-        @include transform-style(preserve-3d);
-        @include perspective(700px);
-
-        &:hover ,&.on{
-            .shadow:before{ @include rotateY(-180deg); }
-            .shadow:after{ @include rotateY(0); }
-            img{
-                &:first-child{ @include rotateY(0); }
-                &+img{ @include rotateY(-180deg); }
-            }
-        }
-
-        img{
+    @include respond-to(desktop) { 
+        .csstransforms3d &{
             @include transform-style(preserve-3d);
-            @include backface-visibility(hidden);
-            &:first-child{ @include rotateY(-180deg); }
-        }
-
-        & .shadow:before, & .shadow:after{
-            @include transition(all 0.5s ease);
-            @include transform-style(preserve-3d);
-            @include backface-visibility(hidden);
             @include perspective(700px);
+
+            &:hover, &.on{
+                .shadow:before{ @include rotateY(-180deg); }
+                .shadow:after{ @include rotateY(0); }
+                img{
+                    &:first-child{ @include rotateY(0); }
+                    &+img{ @include rotateY(-180deg); }
+                }
+            }
+
+            img{
+                @include transform-style(preserve-3d);
+                @include backface-visibility(hidden);
+                &:first-child{ @include rotateY(-180deg); }
+            }
+
+            & .shadow:before, & .shadow:after{
+                @include transition(all 0.5s ease);
+                @include transform-style(preserve-3d);
+                @include backface-visibility(hidden);
+                @include perspective(700px);
+            }
+            .shadow:before{ @include rotateY(0); }
+            .shadow:after{ @include rotateY(-180deg); }
         }
-        .shadow:before{ @include rotateY(0); }
-        .shadow:after{ @include rotateY(-180deg); }
+
+        .no-csstransforms3d &, .no-js &{
+            &:hover ,&.on{
+                img + img{ @include opacity(0); }
+            }
+            .shadow:before{ display: none; }
+        }
     }
 
-    .no-csstransforms3d &, .no-js &{
-        &:hover ,&.on{
-            img + img{ @include opacity(0); }
-        }
+    @include respond-to(mobile-tablet) {
+        &.on img + img{ @include opacity(0); }
         .shadow:before{ display: none; }
     }
 
@@ -322,8 +329,7 @@ input[type="submit"]{
     @extend %transition-bg;
 
     @include respond-to(mobile) { margin-bottom: 0; }
-
-    &:hover{ background-color: white; }
+    @include respond-to(desktop) { &:hover{ background-color: white; } }
 }
 
 textarea{

@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+    var root = $('html,body');
     var cwindow = $(window);
     var action = false;
     var header = $('#header');
@@ -112,16 +113,47 @@ $(document).ready(function()
 
 
     /* ==========================================================================
+       Detect Mobile
+       ========================================================================== */
+
+    var is_mobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iPhone: function() {
+            return navigator.userAgent.match(/iPhone|iPod/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (is_mobile.Android() || is_mobile.BlackBerry() || is_mobile.iOS() || is_mobile.Opera() || is_mobile.Windows());
+        }
+    };
+
+
+    /* ==========================================================================
        Smooth Scrolling Anchor
        ========================================================================== */
 
-    $('a[href*=#]:not([href=#])').click(function(e)
+    $('a[href*=#]:not([href=#])').on('click', function(e)
     {
+
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
             || location.hostname == this.hostname)
         {
             var href = $(this).attr("href");
             var offset_top;
+            var anim_duration;
 
             // manual config target
             switch(href) 
@@ -134,14 +166,18 @@ $(document).ready(function()
                     break;
             }
 
-            $('html,body').velocity(
-                'scroll',
-                {offset: offset_top, duration: 500}
-            );
+            // remove animation for mobile / tablet (low perf)
+            anim_duration = is_mobile.any() ? 0 : 500;
 
+            root.velocity(
+                'scroll',
+                {offset: offset_top, duration: anim_duration}
+            );
+            
             if(e.preventDefault) e.preventDefault();
             e.returnValue = false;
         }
+        
     });
 
 

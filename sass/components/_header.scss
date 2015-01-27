@@ -49,11 +49,11 @@
                 border-top: 1px solid $color2;
                 background-color: $color3;
             }
-            &:hover, &.on{ background-color: $color3; }
+            &.on{ background-color: $color3; }
         }
         .facebook-logo{
             &:before{ top: 20px; }
-            &:hover, &:active{ background-color: $color3; }
+            &:active{ background-color: $color3; }
         }
         a.title-aksvb{
             .title{
@@ -77,6 +77,8 @@
                 @include transform(translateY(60px));
                 top: -60px;
             }
+            .lang-menu:hover{ background-color: $color3; }
+            .facebook-logo:hover{ background-color: $color3; }
             .header-menu{ 
                 line-height: $header-height-min;
                 & li:hover, & li.on{
@@ -98,10 +100,7 @@
             ul.header-menu li{
                 background-color: $colorb;
                 background-color: rgba(black, 0.7);
-                &:hover, &.on{
-                    background-color: black;
-                    //background-color: rgba(black, 0.9);
-                }
+                &.on{ background-color: black; }
             }
         }
     }
@@ -168,8 +167,6 @@ a.title-aksvb{
 
     @include respond-to(mobile) { left: 40px; }
 
-    &:hover{ color: black; }
-
     .title{
         @extend .font-bold;
         font-size: 27px;
@@ -225,7 +222,7 @@ ul.header-menu{
 
     li{
         @extend %transition-bg;
-        &:hover, &.on{ @extend %bg-black-a; }
+        &.on{ @extend %bg-black-a; }
         &:after{ @extend %bg-black-a; }
     }
 
@@ -250,7 +247,7 @@ ul.header-menu{
             margin: 0;
             padding: 0;
             text-align: center;
-
+            &:hover{ @include bg-black-a; }
             &:before{ display: none; }
             &:after{
                 @include init-content(absolute, 1px, 100%);
@@ -333,7 +330,20 @@ ul.header-menu{
     }
     @include respond-to(mobile) { right: 45px; width: 37px; }
 
-    &:hover, &.on{
+    @include respond-to(desktop) {
+        &:hover{
+            @include bg-black-a;
+
+            ul{ 
+                width: 57px;
+                overflow: visible;
+                @include opacity(1);
+                @include respond-to(mobile) { width: 37px; }
+            }
+        }
+    }
+
+    &.on{
         @extend %bg-black-a;
 
         ul{ 
@@ -410,7 +420,8 @@ ul.header-menu{
         color: white;
         @extend .font-regular;
 
-        &.on, &:hover{ @extend .font-bold; }
+        &.on{ @extend .font-bold; }
+        @include respond-to(desktop) { &:hover{ @include font-bold; } }
     }
 }
 
