@@ -186,7 +186,7 @@ $(document).ready(function()
        ========================================================================== */
 
     // Cache selectors
-    var lastId,
+    var last_id,
         slideshow_height = $('#slideshow').outerHeight(),
         header_menu_height = 60,
         header_menu_height_comfort = header_menu_height + 40, // header menu mobile size + margin comfort
@@ -220,9 +220,9 @@ $(document).ready(function()
         cur = cur[cur.length-1];
         var id = cur && cur.length ? cur[0].id : "";
 
-        if (lastId !== id)
+        if (last_id !== id)
         {
-            lastId = id;
+            last_id = id;
             // Set/remove active class
             menu_items
             .parent().removeClass("on")

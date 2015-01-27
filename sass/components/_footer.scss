@@ -34,6 +34,11 @@
     @include background-size(cover);
     width: auto;
     height: auto;
+
+    .lte-ie8 &{ 
+        background-repeat: repeat; 
+        background-position: center;
+    }
 }
 
 
@@ -225,6 +230,8 @@ a.headline, .headline{
     @include box-shadow(rgba(0,0,0,0.8) 0 -4px 5px -3px);
     @extend .clearfix;
     @extend %bg-white2-a;
+
+    .no-rgba &{ background-color: $colorb; }
 
     p{ text-align: center;margin: 16px 0 0 0; }
 

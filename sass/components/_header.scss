@@ -67,6 +67,7 @@
             .subtitle{ font-size: 9px; }
             .logo-aksvb-danse{
                 left: 141px;
+                .lte-ie8 &{ left: 150px; }
                 @include use-sprite(aksvb-danse-licorne-dragon-min); 
             }
         }
@@ -166,6 +167,8 @@ a.title-aksvb{
     text-transform: uppercase;
 
     @include respond-to(mobile) { left: 40px; }
+
+    &:hover{ color: black; }
 
     .title{
         @extend .font-bold;
