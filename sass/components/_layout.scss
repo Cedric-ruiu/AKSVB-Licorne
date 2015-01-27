@@ -73,13 +73,11 @@ h1, h2, h3, h4, h5, h6{
 h1{
     position: relative;
     @extend .font-title;
-    margin: 40px 0 20px 0;
+    margin: 20px 0 60px 0;
     padding-bottom: 20px;
     font-size: 30px;
     line-height: 1em;
     text-align: center;
-    
-    &:first-child{ margin: 20px 0; }
     
     &:after{
         @include init-content(absolute, 60%, 1px);
@@ -103,8 +101,14 @@ h1{
 
 h2{
     @extend .font-bold;
-    font-size: 20px;
-    margin: 80px 0 10px 0;
+    font-size: 22px;
+    margin: 80px 0 20px 0;
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    @include respond-to(mobile) {
+        font-size: 20px;
+    }
 }
 
 h1 + .img, h2 + .img{ margin-top: 0; }
@@ -130,6 +134,13 @@ a{
     font-style: italic;
     &:hover{ text-decoration: underline; }
 }
+
+.fluid-width-video-wrapper{ margin-top: 20px; } // youtube iframe div
+
+
+/* ==========================================================================
+   IMG
+   ========================================================================== */
 
 img.img, .img{
     position: relative;
@@ -182,51 +193,15 @@ img.circle{
     display: inline-block;
     width: 380px;
     height: 380px;
-    margin: 35px 15px 100px 15px;
+    margin: 70px 15px 100px 15px;
     overflow: visible;
 
-    @include respond-to(desktop) { 
-        .csstransforms3d &{
-            @include transform-style(preserve-3d);
-            @include perspective(700px);
+    &:last-child{ margin-bottom: 140px; }
 
-            &:hover, &.on{
-                .shadow:before{ @include rotateY(-180deg); }
-                .shadow:after{ @include rotateY(0); }
-                img{
-                    &:first-child{ @include rotateY(0); }
-                    &+img{ @include rotateY(-180deg); }
-                }
-            }
-
-            img{
-                @include transform-style(preserve-3d);
-                @include backface-visibility(hidden);
-                &:first-child{ @include rotateY(-180deg); }
-            }
-
-            & .shadow:before, & .shadow:after{
-                @include transition(all 0.5s ease);
-                @include transform-style(preserve-3d);
-                @include backface-visibility(hidden);
-                @include perspective(700px);
-            }
-            .shadow:before{ @include rotateY(0); }
-            .shadow:after{ @include rotateY(-180deg); }
-        }
-
-        .no-csstransforms3d &, .no-js &{
-            &:hover ,&.on{
-                img + img{ @include opacity(0); }
-            }
-            .shadow:before{ display: none; }
-        }
+    @include respond-to(desktop) {
+        &:hover img + img{ @include opacity(0); }
     }
-
-    @include respond-to(mobile-tablet) {
-        &.on img + img{ @include opacity(0); }
-        .shadow:before{ display: none; }
-    }
+    &.on img + img{ @include opacity(0); }
 
     img{
         @include transition(all 0.5s ease);
@@ -254,7 +229,7 @@ img.circle{
         @include init-content(absolute, 100%, 100%);
         top: 0;
         left: 0;
-        &:before, &:after{
+        &:after{
             @include init-content(absolute, 100%, 100%);
             @extend %border-radius-entire;
             @include box-shadow(rgba(white, 0.4) 0 0 0 20px inset);
@@ -273,10 +248,6 @@ img.circle{
         p{ font-size: 20px; }
     }
 }
-
-ul:last-child{ margin-bottom: 0; }
-
-.fluid-width-video-wrapper{ margin-top: 20px; } // youtube iframe div
 
 
 /* ==========================================================================
@@ -351,6 +322,8 @@ ul{
     text-align: justify;
     padding-left: 17px;
     margin-top: 10px;
+
+    &:last-child{ margin-bottom: 0; }
 
     li{ 
         margin-top: 5px; 
@@ -476,7 +449,7 @@ table{
     padding: 15px 0;
     margin: 0;
     background-color: $color1;
-    color: #000;
+    color: white;
     text-align: center;
     @extend .font-bold;
 }
