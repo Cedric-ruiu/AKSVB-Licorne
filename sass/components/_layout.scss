@@ -198,6 +198,14 @@ img.circle{
 
     &:last-child{ margin-bottom: 140px; }
 
+    &:after{
+        @include init-content(absolute, 100%, 100%);
+        @extend %border-radius-entire;
+        @include box-shadow(rgba(white, 0.4) 0 0 0 10px inset);
+        top: 0;
+        left: 0;
+    }
+
     @include respond-to(desktop) {
         &:hover img + img{ @include opacity(0); }
     }
@@ -223,19 +231,6 @@ img.circle{
         font-size: 30px;
         margin-top: 13px;
         text-align: center;
-    }
-
-    .shadow{
-        @include init-content(absolute, 100%, 100%);
-        top: 0;
-        left: 0;
-        &:after{
-            @include init-content(absolute, 100%, 100%);
-            @extend %border-radius-entire;
-            @include box-shadow(rgba(white, 0.4) 0 0 0 20px inset);
-            top: 0;
-            left: 0;
-        }
     }
 
     @include respond-to(mobile) { 
