@@ -10,7 +10,7 @@ html, body{
 }
 
 body{
-    color: $colorb;
+    color: $colorb-text;
     font-size: 20px;
     @extend .font-regular;
     @include respond-to(mobile) {
@@ -67,7 +67,7 @@ body{
 
 h1, h2, h3, h4, h5, h6{
     text-rendering: optimizeLegibility;
-    color: $colorb;
+    color: $colorb-text;
 }
 
 h1{
@@ -81,7 +81,7 @@ h1{
     
     &:after{
         @include init-content(absolute, 60%, 1px);
-        background-color: $colorb;
+        background-color: $colorb-text;
         left: 20%;
         bottom: 0;
     }
@@ -327,7 +327,7 @@ ul{
         &:before{
             position: absolute;
             content: "• ";
-            color: $colorb;
+            color: $colorb-text;
             margin: 1px 0 0 -12px;
             font-family: arial, sans-serif;
         }
@@ -338,6 +338,33 @@ ul{
 /* ==========================================================================
    TABLES
    ========================================================================== */
+
+@mixin table-slice-colored($bg-color, $text-color)
+{
+    @include respond-to(mobile) { 
+        .table-container{
+            border-bottom: 1px solid $bg-color;
+            
+            tr td:first-child{ background-color: tint($bg-color, 65%); }
+            td{
+                border-right: 1px solid $bg-color;
+                &:first-child{ border-left: 1px solid $bg-color; }
+            }
+        }
+    }
+
+    table{
+        color: $text-color;
+        thead{ background-color: tint($bg-color, 65%); }
+        tbody{ background-color: tint($bg-color, 35%); }
+        li:before{ color: $text-color; }
+    }
+
+    th, td{
+        border-top: 1px solid $bg-color;
+        border-left: 1px solid $bg-color;
+    }
+}
 
 .table-container{
     position: relative;
@@ -351,16 +378,6 @@ ul{
     .tablesaw-stack tbody tr { border-bottom: 0; }
 
     & .tablesaw-stack td, & .tablesaw-stack th { text-align: center; }
-
-    @include respond-to(mobile) { 
-        border-bottom: 1px solid $color1;
-
-        td{
-            border-right: 1px solid $color1;
-            &:first-child{ border-left: 1px solid $color1; }
-        }
-        tr td:first-child{ background-color: #bfd8b5; }
-    }
 }
 
 table{
@@ -371,20 +388,10 @@ table{
     text-align: center;
     border-spacing: 0;
     border-collapse: collapse;
-    color: #333;
     
-    thead{
-        background-color: #bfd8b5;
-
-        th{ 
-            @extend .font-bold;
-            
-            border-top: 0;
-        }
-    }
-
-    tbody{
-        background-color: #98c281;
+    thead th{
+        @extend .font-bold;
+        border-top: 0;
     }
 
     tr{ border: 0; }
@@ -392,8 +399,6 @@ table{
     th, td{
         padding: 25px 13px;
         vertical-align: middle;
-        border-top: 1px solid $color1;
-        border-left: 1px solid $color1;
 
         @include respond-to(mobile) { padding: 10px 5px; }
 
