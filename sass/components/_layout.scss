@@ -180,12 +180,8 @@ img.circle{
     @extend %border-radius-entire;
     max-width: 100%;
 
-    &.pull-left{
-        margin-right: 20px;
-    }
-    &.pull-right{
-        margin-left: 20px;
-    }
+    &.pull-left{ margin-right: 20px; }
+    &.pull-right{ margin-left: 20px; }
 }
 
 .circle-twofaces{
