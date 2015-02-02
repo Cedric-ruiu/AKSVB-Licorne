@@ -148,35 +148,37 @@
     }
 }
 
-@mixin slice($bg-color, $color, $img, $img-min){
+@mixin slice($bg-color, $color, $img, $img-2x, $img-min, $img-min-2x){
     background-color: $bg-color;
     color: $color;
     &:before{
         @include respond-to(tablet-desktop) { 
-            @include image($img); 
+            @include image($img, $img-2x); 
             @include init-content(absolute, 100%);
             background-repeat: repeat-x;
+            background-position: center;
         }
         @include respond-to(mobile) { 
-            @include image($img-min);
+            @include image($img-min, $img-min-2x);
             @include init-content(absolute, 100%);
             background-repeat: repeat-x;
+            background-position: center;
         }
     }
 }
 
 .slice-w{
-    @include slice($colorw, $colorb-text, 'frise-w.png', 'frise-w-min.png');
+    @include slice($colorw, $colorb-text, 'frise-w.png', 'frise-w_2x.png', 'frise-w-min.png', 'frise-w-min_2x.png');
     a{ color: $colorb-text; }
 }
 
 .slice-y{
-    @include slice($color1, $colorb-text, 'frise-y.png', 'frise-y-min.png');
+    @include slice($color1, $colorb-text, 'frise-y.png', 'frise-y_2x.png', 'frise-y-min.png', 'frise-y-min_2x.png');
     a{ color: $colorb-text; }
 }
 
 .slice-b{
-    @include slice($color4, $colorw, 'frise-b.png', 'frise-b-min.png');
+    @include slice($color4, $colorw, 'frise-b.png', 'frise-b_2x.png', 'frise-b-min.png', 'frise-b-min_2x.png');
 
     h1, h2, li:before{ color: $colorw; }
     h1:after{ background-color: white; }
