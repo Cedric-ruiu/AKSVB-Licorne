@@ -68,7 +68,7 @@
             .logo-aksvb-danse{
                 left: 141px;
                 .lte-ie8 &{ left: 150px; }
-                @include use-sprite(aksvb-danse-licorne-dragon-min); 
+                @include use-sprite(aksvb-danse-licorne-dragon-min);
             }
         }
 
@@ -210,7 +210,7 @@ a.title-aksvb{
 
         @include respond-to(mobile) { 
             left: 141px;
-            @include use-sprite(aksvb-danse-licorne-dragon-min); 
+            @include use-sprite(aksvb-danse-licorne-dragon-min);
         }
     }
 }
