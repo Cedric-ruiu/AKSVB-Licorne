@@ -1,0 +1,139 @@
+/* ==========================================================================
+   SLIDESHOW CONTENT
+   ========================================================================== */
+
+.owl-carousel{
+    position: relative;
+    overflow: hidden; // remove scroll bar while loading bxslider
+    //height: 280px;
+    width: 100%;
+    color: $colorw;
+
+    background-position: center;
+    background-repeat: none;
+    @include background-size(cover);
+
+    .owl-item{ @include translate3d(0, 0, 0); }
+
+    .owl-img {
+        display: block;
+        width: auto;
+        height: 280px;
+        background-position: center;
+        background-repeat: none;
+        @include background-size(cover);
+        
+        .lt-ie9 &{ background-size: 100%; }
+        -webkit-transform-style: preserve-3d;
+
+        @include respond-to(tablet) { height: 500px; }
+        @include respond-to(desktop) { height: 700px; }
+    }
+
+    .slide-img{
+        display: block;
+        width: auto;
+        height: 280px;
+        background-position: center;
+        background-repeat: none;
+        @include background-size(cover);
+
+        -webkit-transform-style: preserve-3d;
+        
+        .lt-ie9 &{ background-size: 100%; }
+
+        @include respond-to(tablet) { height: 500px; }
+        @include respond-to(desktop) { height: 700px; }
+    }
+    
+    .owl-controls{
+        position: absolute;
+        height: 0;
+        overflow: visible;
+        width: 100%;
+        bottom: 0;
+    }
+
+    .owl-dots{
+        position: absolute;
+        height: 20px;
+        width: 100%;
+        bottom: 20px;
+        text-align: center;
+    }
+
+    .owl-dot{
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 100%;
+        margin-right: 7px;
+        background-color: transparent;
+        border: 1px solid $colorw;
+        @include border-radius(20px);
+        @extend %transition-bg;
+        
+        &:last-child{ margin-right: 0; }
+
+        &:hover{ 
+            background-color: $colorw;
+            background-color: rgba($colorw, 0.5); 
+        }
+
+        &.active{ background-color: $colorw; }
+    }
+
+    .owl-unique-content{
+        position: absolute;
+        height: 70px;
+        width: 100%;
+        bottom: 21px;
+
+        .title{ 
+            margin: 0;
+            padding: 0;
+            color: $colorw;
+            line-height: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 21px;
+            //@extend .font-large;
+        }
+    }
+
+    //@include respond-to(mobile) { height: 280px; }
+    
+    /*@include respond-to(desktop) { 
+        .owl-dot:hover{
+            background-color: $colorw;
+            background-color: rgba($colorw, 0.5);
+        }
+    }
+
+    @include respond-to(tablet-desktop) {
+        height: 315px;
+        
+        .owl-img{ height: 315px; }
+
+        .owl-dots{ height: 20px; }
+
+        .owl-dot{
+            width: 20px;
+            margin-right: 10px;
+            @include border-radius(10px);
+        }
+
+        .owl-unique-content{
+            height: 80px;
+            width: 500px;
+            bottom: 51px;
+            left: 230px;
+            .title{
+                line-height: 40px;
+                font-size: 31px;
+                text-align: left;
+            }
+        }
+
+    }*/
+}

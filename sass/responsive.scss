@@ -1,7 +1,6 @@
 @import 'compass';
 @import 'components/ceaser-easing'; /* http://easings.net */
 @import 'components/tablesaw.stackonly'; /* https://github.com/filamentgroup/tablesaw */
-
 @import 'components/normalize'; /* https://github.com/necolas/normalize.css/ */
 @import 'components/retina-sprite/retina-sprites'; /* https://github.com/Gaya/Retina-Sprites-for-Compass */
 @import 'components/var';
@@ -16,100 +15,8 @@
 @import 'components/layout';
 @import 'components/header';
 @import 'components/footer';
-
-
-/* ==========================================================================
-   SLIDESHOW CONTENT
-   ========================================================================== */
-
-.slideshow{
-    position: relative;
-    overflow: hidden; // remove scroll bar while loading bxslider
-    @include respond-to(mobile) { height: 280px; }
-    @include respond-to(tablet) { height: 500px; }
-    @include respond-to(desktop) { height: 700px; }
-    width: 100%;
-    color: $colorw;
-    background-color: #000;
-
-    .slide{ 
-        position:relative;
-        height: 100%; 
-        text-align: center;
-    }
-
-    .slide-img{
-        position: absolute;
-        display: block;
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-position: center;
-        background-repeat: none;
-        @include background-size(cover);
-        
-        .lt-ie9 &{ background-size: 100%; }
-    }
-
-    .shadow{
-        @include text-shadow(#000 1px 1px 4px, #000 2px 2px 4px, #000 3px 3px 4px);
-        .slide-img{ @include opacity(0.6); }
-    }
-}
-
-
-/* ==========================================================================
-   SLIDESHOW PLUGIN
-   ========================================================================== */
-
-.bx-wrapper{ position: relative; }
-
-.bx-controls{
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    bottom: 20px;
-    left: 0;
-    overflow: visible;
-
-    .bx-pager{
-        position: relative;
-        height: 100%;
-        width: 100%;
-        text-align: center;
-    }
-
-    .bx-pager-item{
-        position: relative;
-        display: inline-block;
-        height: 20px;
-        width: 20px;
-
-        & + .bx-pager-item{
-            margin-left: 5px;
-        }
-    }
-
-    a.bx-pager-link{
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        border: 1px solid white;
-        @include border-radius(10px);
-        @extend %transition-bg;
-        @extend .hide-text;
-        
-        &:hover{ 
-            background-color: white;
-            background-color: rgba(white, 0.5); 
-        }
-        &.active{ background-color: white; }
-    }
-}
+@import 'components/owl.carousel'; /* https://github.com/smashingboxes/OwlCarousel2 */
+@import 'components/slideshow';
 
 
 /* ==========================================================================

@@ -238,19 +238,19 @@ $(document).ready(function()
     $('.circle-twofaces').on('click', function() {
         $(this).toggleClass('on');
     });
-});
 
-
-window.onload = function()
-{
     /* ==========================================================================
        Slideshow
        ========================================================================== */
 
-    var slideshow = $('#slideshow');
+    var slideshow = $(".owl-carousel");
 
-    if(slideshow.length)
-    {
-        slideshow.bxSlider({controls:false, auto:true, pause:6500});
-    }
-};
+    slideshow.owlCarousel({
+        items:1,
+        loop:true,
+        autoplay: true,
+        nav:false,
+        autoWidth:false,
+        mergeFit:false
+    });
+});
