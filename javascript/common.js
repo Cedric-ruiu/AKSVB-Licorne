@@ -203,6 +203,7 @@ $(document).ready(function()
     cwindow.scroll(function()
     {
         // Get container scroll position
+        slideshow_height = $('#slideshow').outerHeight();
         var from_top = cwindow.scrollTop();
         var from_top_menu = from_top + header_menu_height_comfort;
 
