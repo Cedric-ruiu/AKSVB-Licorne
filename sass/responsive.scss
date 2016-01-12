@@ -45,6 +45,10 @@
             top: -41px;
         }
     }
+
+    a.button-big{
+        color:$colorb-text;
+    }
 }
 
 @mixin slice($bg-color, $color, $img, $img-2x, $img-min, $img-min-2x){
