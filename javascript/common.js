@@ -1,11 +1,10 @@
-$(document).ready(function()
-{
-    var root = $('html,body');
-    var cwindow = $(window);
-    var action = false;
-    var header = $('#header');
-    var control_menu_mobile = $('#control-menu-mobile');
-    var header_menu = $("#header-menu");
+$(document).ready(function() {
+    var $root                 = $('html,body'),
+        $cwindow             = $(window),
+        action               = false,
+        $header              = $('#header'),
+        $header_menu         = $('#header-menu'),
+        $control_menu_mobile = $('#control-menu-mobile');
     
 
     /* ==========================================================================
@@ -13,8 +12,7 @@ $(document).ready(function()
        ========================================================================== */
     
     // Ajoute la fonctionnalité placeholder des formulaires pour les navigateurs ne le supportant pas
-    if(!Modernizr.input.placeholder)
-    {
+    if ( ! Modernizr.input.placeholder ) {
         $('input').placeholder();
     }
 
@@ -24,25 +22,23 @@ $(document).ready(function()
        ========================================================================== */
 
     // Ajout d'une classe sur le boutton du menu correspondant à la page courante
-    if(typeof(menu_active)!='undefined')
-    {
-        $(menu_active).addClass('on');
+    if ( typeof( menu_active ) != 'undefined' ) {
+        $( menu_active ).addClass('on');
     }
 
     // open/close menu mobile
     var method_menu_mobile = '';
-    control_menu_mobile.on('click', function() {
-        method_menu_mobile = ($(this).hasClass('on')) ? 'slideUp' : 'slideDown';
-        header_menu.velocity(method_menu_mobile, { duration: 500 });
+
+    $control_menu_mobile.on('click', function() {
+        method_menu_mobile = $(this).hasClass('on') ? 'slideUp' : 'slideDown';
+        $header_menu.velocity( method_menu_mobile, { duration: 500 } );
         $(this).toggleClass('on');
     });
 
     // close menu mobile when click on item
-    $('#header-menu li').on('click', function()
-    {
-        if(control_menu_mobile.hasClass('on'))
-        {
-            control_menu_mobile.click();
+    $('#header-menu li').on('click', function(){
+        if ( $control_menu_mobile.hasClass('on') ) {
+            $control_menu_mobile.click();
         }
     });
     
@@ -56,7 +52,7 @@ $(document).ready(function()
        FitVids - MAKE RESPONSIVE VIDEO
        ========================================================================== */
 
-    $("#main").fitVids();
+    $('#main').fitVids();
 
 
     /* ==========================================================================
@@ -64,21 +60,16 @@ $(document).ready(function()
        ========================================================================== */
 
     // Ferme le div parent lors d'un clique sur un bouton possédant la classe 'close'
-    $('.close').on('click', function()
-    {
+    $('.close').on('click', function(){
         $(this).parent().fadeOut();
     });
 
     // Evite qu'un formulaire soit soumis plusieurs fois et ajoute une classe 'on' sur le boutton submit
-    $('form').submit(function()
-    {
-        if(action===false)
-        {
+    $('form').submit(function(){
+        if ( action === false ) {
             action = true;
             $(this).addClass('on');
-        }
-        else
-        {
+        } else {
             return false;
         }
     });
@@ -109,7 +100,7 @@ $(document).ready(function()
     });
 
     // Ouvre le marqueur au chargement de la page
-    marker.infoWindow.open(marker.map, marker);
+    marker.infoWindow.open( marker.map, marker );
 
 
     /* ==========================================================================
@@ -145,36 +136,36 @@ $(document).ready(function()
        Smooth Scrolling Anchor
        ========================================================================== */
 
-    $('a[href*=#]:not([href=#])').on('click', function(e)
-    {
+    $('a[href*=#]:not([href=#])').on('click', function(e) {
 
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
-            || location.hostname == this.hostname)
-        {
-            var href = $(this).attr("href");
-            var offset_top;
-            var anim_duration;
+        if ( location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
+            || location.hostname == this.hostname ) {
+            
+            var href = $(this).attr('href'),
+                offset_top,
+                anim_duration;
 
             // manual config target
-            switch(href) 
-            {
-                case "#m-contact":
-                    offset_top = $(href).offset().top-header_menu_height+1;
+            switch ( href ) {
+                case '#m-contact':
+                    offset_top = $( href ).offset().top - header_menu_height + 1;
                     break;
                 default:
-                    offset_top = $(href).offset().top-header_menu_height_comfort+1;
+                    offset_top = $( href ).offset().top - header_menu_height_comfort + 1;
                     break;
             }
 
             // remove animation for mobile / tablet (low perf)
             anim_duration = is_mobile.any() ? 0 : 500;
 
-            root.velocity(
+            $root.velocity(
                 'scroll',
-                {offset: offset_top, duration: anim_duration}
+                { offset: offset_top, duration: anim_duration }
             );
             
-            if(e.preventDefault) e.preventDefault();
+            if ( e.preventDefault ) {
+                e.preventDefault();
+            }
             e.returnValue = false;
         }
         
@@ -187,45 +178,48 @@ $(document).ready(function()
 
     // Cache selectors
     var last_id,
-        slideshow_height = $('#slideshow').outerHeight(),
+        $slideshow_height = $('#slideshow').outerHeight(),
         header_menu_height = 60,
         header_menu_height_comfort = header_menu_height + 40, // header menu mobile size + margin comfort
         // All list items
-        menu_items = header_menu.find("a"),
+        $menu_items = $header_menu.find('a'),
         // Anchors corresponding to menu items
-        scrollItems = menu_items.map(function()
-        {
-            var item = $($(this).attr("href"));
-            if (item.length) { return item; }
+        scrollItems = $menu_items.map(function(){
+            var $item = $( $(this).attr('href') );
+            if ( $item.length ) {
+                return $item;
+            }
         });
 
     // Bind to scroll
-    cwindow.scroll(function()
-    {
+    $cwindow.scroll(function(){
         // Get container scroll position
-        slideshow_height = $('#slideshow').outerHeight();
-        var from_top = cwindow.scrollTop();
-        var from_top_menu = from_top + header_menu_height_comfort;
+        $slideshow_height = $('#slideshow').outerHeight();
+        var from_top = $cwindow.scrollTop(),
+            from_top_menu = from_top + header_menu_height_comfort;
 
         // fixed menu
-        if(from_top > slideshow_height) header.addClass('fixed');
-        else header.removeClass('fixed');
+        if ( from_top > $slideshow_height ) {
+            $header.addClass('fixed');
+        } else {
+            $header.removeClass('fixed');
+        }
 
         // Get id of current scroll item
-        var cur = scrollItems.map(function()
-        {
-            if ($(this).offset().top < from_top_menu) return this;
+        var cur = scrollItems.map(function() {
+            if ( $(this).offset().top < from_top_menu ) {
+                return this;
+            }
         });
 
         // Get the id of the current element
-        cur = cur[cur.length-1];
-        var id = cur && cur.length ? cur[0].id : "";
+        cur = cur[ cur.length - 1 ];
+        var id = cur && cur.length ? cur[0].id : '';
 
-        if (last_id !== id)
-        {
+        if ( last_id !== id ){
             last_id = id;
             // Set/remove active class
-            menu_items
+            $menu_items
             .parent().removeClass("on")
             .end().filter("[href=#"+id+"]").parent().addClass("on");
         }
@@ -244,14 +238,14 @@ $(document).ready(function()
        Slideshow
        ========================================================================== */
 
-    var slideshow = $(".owl-carousel");
+    var $slideshow = $('.owl-carousel');
 
-    slideshow.owlCarousel({
-        items:1,
-        loop:true,
+    $slideshow.owlCarousel({
+        items: 1,
+        loop: true,
         autoplay: true,
-        nav:false,
-        autoWidth:false,
-        mergeFit:false
+        nav: false,
+        autoWidth: false,
+        mergeFit: false
     });
 });
