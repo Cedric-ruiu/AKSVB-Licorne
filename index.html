@@ -512,18 +512,21 @@
                         </div>-->
 
                         <div class="grid-50">
-                            <h1>Nous contacter</h1>
-                            <p>Pour toute demande de renseignement concernant les entraînements ou sollicitation pour participation à un événement, merci de remplir le formulaire ci-contre. Pour les demandes de devis, merci de décrire votre structure, d'indiquer le type d'événement - date et horaires compris -, et le nombre de danses, de têtes de licorne ou de dragons souhaités. Nous vous répondrons dans les plus brefs délais.</p>
+                            <h1 id="contact-title">Nous contacter</h1>
+                            <p id="contact-desc">Pour toute demande de renseignement concernant les entraînements ou sollicitation pour participation à un événement, merci de remplir le formulaire ci-contre. Pour les demandes de devis, merci de décrire votre structure, d'indiquer le type d'événement - date et horaires compris -, et le nombre de danses, de têtes de licorne ou de dragons souhaités. Nous vous répondrons dans les plus brefs délais.</p>
                         </div>
                         <div class="grid-50 grid-parent">
-                            <form role="form" accept-charset="utf-8" method="post" action="">
+                            <form aria-labelledby="contact-title" aria-describedby="contact-desc" accept-charset="utf-8" method="post" action="">
                                 <div class="grid-50 tablet-grid-50 c-input-name">
-                                    <input type="text" name="name" placeholder="Nom &amp; Prénom" required>
+                                    <label for="name" class="visuallyhidden">Votre nom</label>
+                                    <input id="name" type="text" name="name" placeholder="Nom &amp; Prénom" required>
                                 </div>
                                 <div class="grid-50 tablet-grid-50 c-input-email">
-                                    <input type="email" name="email" placeholder="Adresse email" required>
+                                    <label for="email" class="visuallyhidden">Votre e-mail</label>
+                                    <input id="email" type="email" name="email" placeholder="Adresse email" required>
                                 </div>
                                 <div class="grid-100 c-textaera-message">
+                                    <label for="message" class="visuallyhidden">Votre message</label>
                                     <textarea name="message" placeholder="Message..." required></textarea>
                                 </div>
                                 <input type="submit" name="submit" value="Envoyer">
